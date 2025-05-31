@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use App\Models\Image;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PostController extends Controller
@@ -33,6 +37,7 @@ class PostController extends Controller
     {
 
         $post = new Post($request->validated());
+        $post->user()->associate(Auth::user());
         $post->save();
         return redirect()->route('posts.index');
     }

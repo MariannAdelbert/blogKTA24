@@ -14,6 +14,8 @@
                 <div class="card-body">
                     <h2 class="card-title">{{$post->title}}</h2>
                     <p>{{$post->snippet}}</p>
+                    <p class="info" >{{ $post->created_at->diffForHumans()}}</p>
+                    <p class="info">{{ $post->user->name}}</p>
                     <div class="card-actions justify-end">
                         <button class="btn btn-primary">Read More</button>
                     </div>
