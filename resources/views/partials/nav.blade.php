@@ -35,7 +35,25 @@
       <li><a>Item 3</a></li>
     </ul>
   </div>
-  <div class="navbar-end">
-    <a class="btn">Button</a>
+  <div class="navbar-end gap-2">
+    @auth
+    <ul class="menu menu-horizontal px-1 z-10">
+        <li>
+          <details>
+            <summary>{{ auth()->user()->name }}</summary>
+            <ul class="p-2">
+              <li>
+                <form method="POST" action="{{ route('logout')}}">
+                    @csrf
+                </form>
+            </li>
+            </ul>
+          </details>
+        </li>
+      </ul>
+    @else
+        <a href="{{ route('register') }}" class="btn btn-primary">Register</a>
+        <a href="{{ route('register') }}" class="btn btn-secondary">Login</a>
+    @endauth
   </div>
 </div>
