@@ -1,31 +1,30 @@
+<p class="text-sm text-gray-500 mt-2">Paginatsioon on disainitud DaisyUI komponentidega ja roosade nuppudega.</p>
+
 @if ($paginator->hasPages())
-    <nav>
+    {{-- CUSTOM PAGINATION using DaisyUI --}}
+    <nav role="navigation" aria-label="Pagination Navigation" class="mt-4 border-2 border-indigo-400 p-4 rounded-lg shadow-md">
         <div class="join">
             {{-- Previous Page Link --}}
             @if ($paginator->onFirstPage())
-                <a class="join-item btn btn-disabled" aria-disabled="true" aria-label="@lang('pagination.previous')">
-                    <span aria-hidden="true">⮨</span>
-                </a>
+                <button class="join-item btn btn-disabled" disabled aria-label="@lang('pagination.previous')">⮨</button>
             @else
-                <a href="{{ $paginator->previousPageUrl() }}" class="join-item btn" rel="prev" aria-label="@lang('pagination.previous')">
-                   ⮨
-                </a>
+                <a href="{{ $paginator->previousPageUrl() }}" class="join-item btn btn-outline btn-primary hover:bg-primary hover:text-white transition" rel="prev" aria-label="@lang('pagination.previous')">⮨</a>
             @endif
 
-            {{-- Pagination Elements --}}
+            {{-- Page Numbers --}}
             @foreach ($elements as $element)
                 {{-- "Three Dots" Separator --}}
                 @if (is_string($element))
-                    <button class="join-item btn btn-disabled" aria-disabled="true"><span>{{ $element }}</span></button>
+                    <button class="join-item btn btn-disabled" disabled>{{ $element }}</button>
                 @endif
 
                 {{-- Array Of Links --}}
                 @if (is_array($element))
                     @foreach ($element as $page => $url)
                         @if ($page == $paginator->currentPage())
-                            <button class="join-item btn btn-active" aria-current="page"><span>{{ $page }}</span></button>
+                            <button class="join-item btn btn-primary btn-active" aria-current="page">{{ $page }}</button>
                         @else
-                            <a class="join-item btn" href="{{ $url }}">{{ $page }}</a>
+                            <a href="{{ $url }}" class="join-item btn btn-outline btn-primary hover:bg-primary hover:text-white transition">{{ $page }}</a>
                         @endif
                     @endforeach
                 @endif
@@ -33,11 +32,9 @@
 
             {{-- Next Page Link --}}
             @if ($paginator->hasMorePages())
-                <a class="join-item btn" href="{{ $paginator->nextPageUrl() }}" rel="next" aria-label="@lang('pagination.next')">⮩</a>
+                <a href="{{ $paginator->nextPageUrl() }}" class="join-item btn btn-outline btn-primary hover:bg-primary hover:text-white transition" rel="next" aria-label="@lang('pagination.next')">⮩</a>
             @else
-                <a class="join-item btn btn-disabled" aria-disabled="true" aria-label="@lang('pagination.next')">
-                    <span aria-hidden="true">⮩</span>
-                </a>
+                <button class="join-item btn btn-disabled" disabled aria-label="@lang('pagination.next')">⮩</button>
             @endif
         </div>
     </nav>
