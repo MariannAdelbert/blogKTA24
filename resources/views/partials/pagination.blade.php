@@ -1,4 +1,4 @@
-<p class="text-sm text-gray-500 mt-2">Paginatsioon on disainitud DaisyUI komponentidega ja roosade nuppudega.</p>
+<p class="text-sm text-gray-500 mt-2">Paginatsioon on disainitud DaisyUI komponentidega ja siniste/roosade nuppudega.</p>
 
 @if ($paginator->hasPages())
     {{-- CUSTOM PAGINATION using DaisyUI --}}
@@ -8,7 +8,7 @@
             @if ($paginator->onFirstPage())
                 <button class="join-item btn btn-disabled" disabled aria-label="@lang('pagination.previous')">⮨</button>
             @else
-                <a href="{{ $paginator->previousPageUrl() }}" class="join-item btn btn-outline btn-primary hover:bg-primary hover:text-white transition" rel="prev" aria-label="@lang('pagination.previous')">⮨</a>
+                <a href="{{ $paginator->previousPageUrl() }}" class="join-item btn btn-outline btn-secondary hover:bg-primary hover:text-white transition" rel="prev" aria-label="@lang('pagination.previous')">⮨</a>
             @endif
 
             {{-- Page Numbers --}}
@@ -22,7 +22,7 @@
                 @if (is_array($element))
                     @foreach ($element as $page => $url)
                         @if ($page == $paginator->currentPage())
-                            <button class="join-item btn btn-primary btn-active" aria-current="page">{{ $page }}</button>
+                            <button class="join-item btn btn-secondary btn-active" aria-current="page">{{ $page }}</button>
                         @else
                             <a href="{{ $url }}" class="join-item btn btn-outline btn-primary hover:bg-primary hover:text-white transition">{{ $page }}</a>
                         @endif
@@ -32,7 +32,7 @@
 
             {{-- Next Page Link --}}
             @if ($paginator->hasMorePages())
-                <a href="{{ $paginator->nextPageUrl() }}" class="join-item btn btn-outline btn-primary hover:bg-primary hover:text-white transition" rel="next" aria-label="@lang('pagination.next')">⮩</a>
+                <a href="{{ $paginator->nextPageUrl() }}" class="join-item btn btn-outline btn-secondary hover:bg-primary hover:text-white transition" rel="next" aria-label="@lang('pagination.next')">⮩</a>
             @else
                 <button class="join-item btn btn-disabled" disabled aria-label="@lang('pagination.next')">⮩</button>
             @endif
